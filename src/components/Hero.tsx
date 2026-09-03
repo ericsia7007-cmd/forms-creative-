@@ -46,9 +46,23 @@ export default function Hero() {
         </h1>
         <a
           href="#work"
-          className="mt-10 rounded-full bg-white px-7 py-[0.95rem] text-[0.875rem] font-medium text-ink transition-colors duration-300 hover:bg-ink hover:text-white"
+          className="group mt-10 inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-[0.95rem] text-[0.875rem] font-medium text-ink transition-colors duration-300 hover:bg-ink hover:text-white"
         >
           See the work
+          {/* The arrow says which way; it nudges down on hover so the button
+              reads as a movement rather than a destination. */}
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="size-3.5 transition-transform duration-300 group-hover:translate-y-0.5"
+            aria-hidden="true"
+          >
+            <path d="M12 5v13M18 12l-6 6-6-6" />
+          </svg>
         </a>
       </div>
 
