@@ -33,7 +33,7 @@ const seq = (prefix: string, n: number, skip: number[] = []) =>
 export const weddings: Wedding[] = [
   {
     couple: 'Dominic & Cassandra',
-    place: 'Sarawak',
+    place: 'Actual Day',
     year: '2026',
     reel: '/hero.mp4',
     reelUrl: 'https://www.instagram.com/reel/DaSVAnYTzr-/',
@@ -47,7 +47,7 @@ export const weddings: Wedding[] = [
   },
   {
     couple: 'Benny & Sherry',
-    place: 'Sarawak × Hong Kong',
+    place: 'Actual Day',
     year: '2026',
     reel: '/benny.mp4',
     reelUrl: 'https://www.instagram.com/reel/DUApIwek2z7/',
