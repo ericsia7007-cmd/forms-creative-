@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+
+# Working material from the Instagram pull — originals, rejected frames,
+# story-canvas screenshots, the removed street set. None of it is built or
+# served; keeping it out stops the repo growing past the site itself.
+# NOTE: this means assets-raw/ lives only on this machine — back it up
+# separately if you want to keep the 3277x4096 collab originals.
+assets-raw
