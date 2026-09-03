@@ -16,7 +16,10 @@ export default function Hero() {
       >
         <source src="/hero.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-black/45" />
+      {/* 55%, not more: the reel has bright frames (sky) and dark ones (indoors),
+          and a fixed scrim has to suit the whole range. Heavier than this and
+          the dark frames flatten to a grey slab, which defeats using video. */}
+      <div className="absolute inset-0 bg-black/55" />
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/55 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/55 to-transparent" />
 

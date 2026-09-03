@@ -90,7 +90,7 @@ export default function ReelPlayer({ set, soundOn, onSound }: Props) {
         onClick={() => onSound(on ? null : set.couple)}
         aria-label={on ? `Mute ${set.couple}` : `Unmute ${set.couple}`}
         aria-pressed={on}
-        className="absolute bottom-4 right-4 grid size-9 place-items-center rounded-full bg-black/35 text-white backdrop-blur-sm transition-colors hover:bg-black/55"
+        className="absolute bottom-4 right-4 grid size-11 place-items-center rounded-full bg-black/35 text-white backdrop-blur-sm transition-colors hover:bg-black/55 sm:size-9"
       >
         <SpeakerIcon on={on} />
       </button>
