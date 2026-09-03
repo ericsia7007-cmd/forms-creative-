@@ -47,7 +47,7 @@ export const weddings: Wedding[] = [
     place: 'Sarawak × Hong Kong',
     year: '2026',
     reel: '/benny.mp4',
-    reelStart: 5,
+    // The 5s lead-in is cut out of the file itself now, so no seek is needed.
     reelRotate: -90,
     photos: seq('hk', 10, [9]),
     credit: {
