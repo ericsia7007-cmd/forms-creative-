@@ -1,6 +1,7 @@
 node_modules
 dist
 .DS_Store
+*.tsbuildinfo
 
 # Working material from the Instagram pull — originals, rejected frames,
 # story-canvas screenshots, the removed street set. None of it is built or
