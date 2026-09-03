@@ -85,6 +85,24 @@ export default function ReelPlayer({ set, soundOn, onSound }: Props) {
         <source src={set.reel} type="video/mp4" />
       </video>
 
+      {set.reelUrl && (
+        // The page carries a 15s cut; the full reel lives on the account it
+        // came from, which is also where enquiries actually reach Colin.
+        <a
+          href={set.reelUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-black/35 px-4 py-3 text-[0.8125rem] font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/55 sm:py-2.5"
+        >
+          Watch full film
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
+            strokeLinecap="round" strokeLinejoin="round" className="size-3.5" aria-hidden="true">
+            <path d="M7 17 17 7M9 7h8v8" />
+          </svg>
+          <span className="sr-only">on Instagram, opens in a new tab</span>
+        </a>
+      )}
+
       <button
         type="button"
         onClick={() => onSound(on ? null : set.couple)}

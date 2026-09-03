@@ -6,6 +6,8 @@ export type Wedding = {
   place: string
   year?: string
   reel?: string
+  /** The post this reel is cut from — the site shows 15s, Instagram has all of it. */
+  reelUrl?: string
   /** Seconds to start (and loop back) at — skips a slow intro. */
   reelStart?: number
   /**
@@ -34,6 +36,7 @@ export const weddings: Wedding[] = [
     place: 'Sarawak',
     year: '2026',
     reel: '/hero.mp4',
+    reelUrl: 'https://www.instagram.com/reel/DaSVAnYTzr-/',
     photos: seq('cw', 14, [13, 14]),
     credit: {
       video: '@colin_wee0904',
@@ -47,6 +50,7 @@ export const weddings: Wedding[] = [
     place: 'Sarawak × Hong Kong',
     year: '2026',
     reel: '/benny.mp4',
+    reelUrl: 'https://www.instagram.com/reel/DUApIwek2z7/',
     // The 5s lead-in is cut out of the file itself now, so no seek is needed.
     reelRotate: -90,
     photos: seq('hk', 10, [9]),
