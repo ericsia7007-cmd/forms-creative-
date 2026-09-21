@@ -34,12 +34,15 @@ Everything in `public/` was pulled from the public Instagram embed endpoint for
 
 | Files | Set | Owner |
 |---|---|---|
-| `pr1–pr8` | **Lehwei & Celina** — proposal | **@forms_creative** — Colin's own, watermarked FORMS CREATIVE |
-| `cw1–cw14` | **Dominic & Cassandra** — same wedding as the hero reel | @momentsby_paul (collab) |
-| `hk1–hk10` | **Benny & Sherry** — Sarawak × Hong Kong | @momentsby_paul (collab) |
-| `st1 · st5 · st7 · st8 · st10 · st11` | Street portraits, Sibu, Dec 2025 | @forms_creative |
-| `st2 · st3 · st9` | Street collages | @forms_creative |
+| `cw1–cw12` | **Dominic & Cassandra** — same wedding as the hero reel | @momentsby_paul (collab) |
+| `hk1–hk8 · hk10` | **Benny & Sherry** — actual day | @momentsby_paul (collab) |
+| `px1–px6 · px10 · pr1–pr5` | **Lehwei & Celina** — proposal | **@forms_creative** — Colin's own, watermarked FORMS CREATIVE |
+| `ro1–ro6 · rb1–rb3` | **Lihong & YiiXiu** — ROM, Sibu | **@forms_creative** — Colin's own |
 | `wed1.jpg` | Poster behind the hero reel | @forms_creative |
+
+Rows are in the order the sets appear on the page. `px1`, `px3` and `px5` are
+multi-frame layouts rather than single photographs — readable at the lead
+frame's size, mush at thumbnail size.
 
 `public/hero.mp4` — a 15-second cut of the **Dominic & Cassandra** wedding
 reel, 1276×718, about 1.7 MB. Plays in the hero and again in that couple's block.
@@ -150,11 +153,11 @@ Change them in the `@theme` block in `src/index.css`.
 | Weddings (`#work`) | `src/components/Weddings.tsx` |
 | Wedding gallery pages | `src/components/WeddingGallery.tsx` |
 | Collaboration credit | `src/components/WeddingCredits.tsx` |
-| Street portraits (`#street`) | `src/components/Street.tsx` |
-| Studio / about | `src/components/Studio.tsx` |
 | Contact + oversized wordmark | `src/components/Contact.tsx` |
 
-Section headlines are Colin's own captions — "Love is found in the smallest
-moments" and "The street is the best studio" both come off his posts.
+The one section headline left, "Stories told quietly, through real moments.",
+sits in `Weddings.tsx` and again in `index.html` as the page title and share
+description — change it in both. The street and studio sections it used to sit
+alongside were cut, and their captions went with them.
 
 Contact details (WhatsApp, Instagram) are hardcoded in `Contact.tsx`.
