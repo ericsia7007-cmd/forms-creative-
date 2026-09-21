@@ -12,9 +12,22 @@ export type Page = {
   path: string
   title: string
   description: string
+  /** Goes on <html>. Only the Chinese page is not English. */
+  lang?: string
+  /**
+   * Only the home page has a translation, so only it and /zh carry these.
+   * Pointing gallery pages at /zh would claim an equivalence that isn't there.
+   */
+  alternates?: { hreflang: string; path: string }[]
   /** Rendered into the page as one <script type="application/ld+json"> each. */
   schemas: object[]
 }
+
+const TRANSLATIONS = [
+  { hreflang: 'en', path: '/' },
+  { hreflang: 'zh-Hans', path: '/zh' },
+  { hreflang: 'x-default', path: '/' },
+]
 
 /** "ROM · Sibu" reads as a label on the page but as noise in a title. */
 const plain = (place: string) => place.replace(' · ', ', ')
@@ -64,6 +77,7 @@ const home: Page = {
   title: `${NAME} — Wedding Films & Photography, Sibu Sarawak`,
   description:
     'Wedding films and photography in Sibu, Sarawak. Actual day, ROM and proposal coverage, directed by Colin Wee. Open for destination bookings.',
+  alternates: TRANSLATIONS,
   schemas: [
     { '@context': 'https://schema.org', ...business },
     {
@@ -73,6 +87,22 @@ const home: Page = {
       name: NAME,
       publisher: { '@id': `${SITE}/#business` },
     },
+  ],
+}
+
+// Malaysian Chinese search Google in simplified characters, so this page is
+// written in them. It is kept off the English pages' titles and share cards on
+// purpose: hreflang is what routes a Chinese query here, and mixing the two
+// would show Chinese in every WhatsApp forward, which is not what was wanted.
+const chinese: Page = {
+  path: '/zh',
+  lang: 'zh-Hans',
+  title: '诗巫婚礼摄影与录影 — Forms Creative Studio',
+  description:
+    '砂拉越诗巫的婚礼影像工作室，由 Colin Wee 主理。正日、注册（ROM）与求婚的摄影与录影，服务诗巫及砂拉越各地，也接外地婚礼。',
+  alternates: TRANSLATIONS,
+  schemas: [
+    { '@context': 'https://schema.org', ...business, inLanguage: 'zh-Hans' },
   ],
 }
 
@@ -107,4 +137,5 @@ const gallery = (w: Wedding): Page => ({
 export const pages: Page[] = [
   home,
   ...weddings.filter((w) => w.gallerySlug).map(gallery),
+  chinese,
 ]

@@ -47,6 +47,11 @@ function head(page) {
     `<meta name="twitter:title" content="${esc(page.title)}" />`,
     `<meta name="twitter:description" content="${esc(page.description)}" />`,
     `<meta name="twitter:image" content="${SITE}/og.jpg" />`,
+    // Tells Google these are the same page in two languages, which is what
+    // routes a Chinese query to /zh without putting Chinese on the English one.
+    ...(page.alternates ?? []).map(
+      (a) => `<link rel="alternate" hreflang="${a.hreflang}" href="${urlOf(a.path)}" />`,
+    ),
     ...page.schemas.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`),
   ]
     .map((tag) => '    ' + tag)
@@ -61,6 +66,7 @@ for (const page of pages) {
     throw new Error('index.html no longer has the <!--seo--> markers or an empty #root')
   }
   const html = template
+    .replace('<html lang="en">', `<html lang="${page.lang ?? 'en'}">`)
     .replace(SEO, `<!--seo-->\n${head(page)}\n    <!--/seo-->`)
     .replace(ROOT, `<div id="root">${render(page.path)}</div>`)
 
@@ -102,10 +108,16 @@ credited to the photographer who shot them.
 ## Weddings
 
 ${pages
-  .filter((p) => p.path !== '/')
+  .filter((p) => p.path.startsWith('/weddings/'))
   // The description opens with the couple, which is already the link text.
   .map((p) => `- [${p.title.split(' — ')[0]}](${urlOf(p.path)}) — ${p.description.replace(/^.*? — /, '')}`)
   .join('\n')}
+
+## 中文
+
+诗巫婚礼摄影与录影。Forms Creative Studio 是一间位于砂拉越诗巫的婚礼影像工作室，
+由 Colin Wee 主理，拍正日（actual day）、注册（ROM）与求婚，摄影与录影都做。
+服务诗巫及砂拉越各地，也接外地婚礼。中文页：${SITE}/zh
 
 ## Contact
 

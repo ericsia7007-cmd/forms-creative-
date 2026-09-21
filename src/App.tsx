@@ -2,6 +2,7 @@ import Hero from './components/Hero'
 import Weddings from './components/Weddings'
 import WeddingGallery from './components/WeddingGallery'
 import Contact from './components/Contact'
+import Chinese from './components/Chinese'
 import { weddings } from './data/photos'
 import { useReveal } from './useReveal'
 
@@ -14,6 +15,9 @@ export default function App({ path = window.location.pathname }: { path?: string
   const galleryWedding = weddings.find((wedding) => wedding.gallerySlug && clean === `/weddings/${wedding.gallerySlug}`)
   if (galleryWedding) {
     return <WeddingGallery wedding={galleryWedding} />
+  }
+  if (clean === '/zh') {
+    return <Chinese />
   }
 
   return (

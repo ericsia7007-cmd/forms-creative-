@@ -86,7 +86,14 @@ export default function Contact() {
 
       <div className="mx-auto mt-24 flex max-w-[87.5rem] flex-wrap items-center justify-between gap-3 text-[0.75rem] font-medium text-muted">
         <span>Forms Creative Studio</span>
-        <span>Sibu, Sarawak · {new Date().getFullYear()}</span>
+        <span className="flex items-center gap-4">
+          {/* The whole site is English by choice; this is the way in for
+              someone who searched in Chinese, kept to the footer's own size. */}
+          <a href="/zh" className="font-cjk underline-offset-4 transition-opacity hover:opacity-60 hover:underline">
+            中文
+          </a>
+          Sibu, Sarawak · {new Date().getFullYear()}
+        </span>
       </div>
 
       {/* The wordmark sits on top; the rising black is what makes it visible. */}
