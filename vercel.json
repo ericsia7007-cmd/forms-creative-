@@ -2,9 +2,15 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/",
       "has": [{ "type": "host", "value": "forms-creative.vercel.app" }],
-      "destination": "https://www.formscreativestudio.com/:path*",
+      "destination": "https://www.formscreativestudio.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path+",
+      "has": [{ "type": "host", "value": "forms-creative.vercel.app" }],
+      "destination": "https://www.formscreativestudio.com/:path+",
       "permanent": true
     }
   ],
