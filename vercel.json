@@ -1,3 +1,12 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "forms-creative.vercel.app" }],
+      "destination": "https://www.formscreativestudio.com/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [{ "source": "/weddings/:slug", "destination": "/index.html" }]
 }
