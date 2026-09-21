@@ -23,11 +23,13 @@ export type Page = {
   schemas: object[]
 }
 
-const TRANSLATIONS = [
-  { hreflang: 'en', path: '/' },
-  { hreflang: 'zh-Hans', path: '/zh' },
-  { hreflang: 'x-default', path: '/' },
+const pair = (en: string, zh: string) => [
+  { hreflang: 'en', path: en },
+  { hreflang: 'zh-Hans', path: zh },
+  { hreflang: 'x-default', path: en },
 ]
+
+const TRANSLATIONS = pair('/', '/zh')
 
 /** "ROM · Sibu" reads as a label on the page but as noise in a title. */
 const plain = (place: string) => place.replace(' · ', ', ')
@@ -62,8 +64,13 @@ const business = {
     addressRegion: 'Sarawak',
     addressCountry: 'MY',
   },
+  // Named towns match what the About page says the studio travels to. They
+  // are a willingness to travel, not a claim to have shot in each one.
   areaServed: [
     { '@type': 'City', name: 'Sibu' },
+    { '@type': 'City', name: 'Sibu Jaya' },
+    { '@type': 'City', name: 'Sarikei' },
+    { '@type': 'City', name: 'Kuching' },
     { '@type': 'AdministrativeArea', name: 'Sarawak' },
     { '@type': 'Country', name: 'Malaysia' },
   ],
@@ -133,9 +140,40 @@ const gallery = (w: Wedding): Page => ({
   ],
 })
 
+// Said once, in two languages. The page itself holds the wording; these are
+// what a search result and an AI answer quote, so they say the same things.
+const ABOUT_EN =
+  'Forms Creative Studio is a wedding videography and photography studio in Sibu, Sarawak, directed by Colin Wee. Actual day weddings, ROM registrations and proposals, across Sarawak and open for destination weddings.'
+const ABOUT_ZH =
+  'Forms Creative Studio 是位于马来西亚砂拉越诗巫的婚礼录影与摄影工作室，由 Colin Wee 主理、掌镜。拍正日（actual day）婚礼、注册（ROM）与求婚，服务诗巫、泗里街、古晋等砂拉越各地，也接外地婚礼。'
+
+const aboutPage = (lang: 'en' | 'zh'): Page => ({
+  path: lang === 'en' ? '/about' : '/zh/about',
+  lang: lang === 'en' ? undefined : 'zh-Hans',
+  title:
+    lang === 'en'
+      ? `About — ${NAME}, Wedding Films in Sibu Sarawak`
+      : `关于 — 诗巫婚礼摄影与录影 ${NAME}`,
+  description: lang === 'en' ? ABOUT_EN : ABOUT_ZH,
+  alternates: pair('/about', '/zh/about'),
+  schemas: [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      url: `${SITE}${lang === 'en' ? '/about' : '/zh/about'}`,
+      name: lang === 'en' ? `About ${NAME}` : `关于 ${NAME}`,
+      description: lang === 'en' ? ABOUT_EN : ABOUT_ZH,
+      inLanguage: lang === 'en' ? 'en-MY' : 'zh-Hans',
+      mainEntity: { '@id': `${SITE}/#business` },
+    },
+  ],
+})
+
 /** Every URL the site has. The sitemap, the prerender and llms.txt all read this. */
 export const pages: Page[] = [
   home,
   ...weddings.filter((w) => w.gallerySlug).map(gallery),
   chinese,
+  aboutPage('en'),
+  aboutPage('zh'),
 ]

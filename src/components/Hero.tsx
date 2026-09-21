@@ -27,8 +27,13 @@ export default function Hero() {
           later in the DOM it would swallow every click meant for this nav. */}
       <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-end px-5 py-5 text-[0.75rem] font-medium">
         <nav className="flex gap-5 sm:gap-7">
+          <a href="/about" className="underline-offset-[6px] decoration-1 transition-opacity hover:underline">
+            About
+          </a>
+          {/* Dropped first when the bar gets narrow: the hero's own button
+              already sends you to the same place. */}
           <a href="#work" className="hidden underline-offset-[6px] decoration-1 transition-opacity hover:underline sm:inline">
-            Weddings
+            Actual Day
           </a>
           <a href="#contact" className="underline-offset-[6px] decoration-1 transition-opacity hover:underline">
             Contact

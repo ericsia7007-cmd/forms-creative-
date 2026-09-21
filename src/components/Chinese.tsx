@@ -35,17 +35,18 @@ export default function Chinese() {
           </h1>
         </header>
 
-        <div className="mt-10 space-y-5 font-cjk text-[1rem] leading-[1.9] text-muted">
+        {/* A lede only. The full introduction lives at /zh/about, so the two
+            pages do not compete for the same Chinese queries. */}
+        <div className="mt-10 font-cjk text-[1rem] leading-[1.9] text-muted">
           <p>
             Forms Creative Studio 是一间位于砂拉越诗巫的婚礼影像工作室，由 Colin Wee
-            主理。我们拍正日（actual day）、注册（ROM），也拍求婚。
+            主理。拍正日（actual day）、注册（ROM）与求婚，摄影与录影都做，
+            服务砂拉越各地，也接外地婚礼。
           </p>
-          <p>
-            摄影与录影都做。这个网站上的两场合作婚礼由 Colin
-            负责录影，另外两组求婚与注册，则是他自己拍的照片。
-          </p>
-          <p>
-            服务范围以诗巫为主，砂拉越各地皆可前往；外地（destination）婚礼同样欢迎询问。
+          <p className="mt-5">
+            <a href="/zh/about" className={link}>
+              关于我们
+            </a>
           </p>
         </div>
 

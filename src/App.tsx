@@ -3,6 +3,7 @@ import Weddings from './components/Weddings'
 import WeddingGallery from './components/WeddingGallery'
 import Contact from './components/Contact'
 import Chinese from './components/Chinese'
+import About from './components/About'
 import { weddings } from './data/photos'
 import { useReveal } from './useReveal'
 
@@ -18,6 +19,12 @@ export default function App({ path = window.location.pathname }: { path?: string
   }
   if (clean === '/zh') {
     return <Chinese />
+  }
+  if (clean === '/about') {
+    return <About lang="en" />
+  }
+  if (clean === '/zh/about') {
+    return <About lang="zh" />
   }
 
   return (
