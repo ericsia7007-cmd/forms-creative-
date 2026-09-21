@@ -5,10 +5,13 @@ import Contact from './components/Contact'
 import { weddings } from './data/photos'
 import { useReveal } from './useReveal'
 
-export default function App() {
+// The prerender passes the path in; in the browser nothing does, and the
+// default reads it off the location. Keeping window out of the render body is
+// what lets this same component run under react-dom/server at build time.
+export default function App({ path = window.location.pathname }: { path?: string }) {
   useReveal()
-  const path = window.location.pathname.replace(/\/$/, '')
-  const galleryWedding = weddings.find((wedding) => wedding.gallerySlug && path === `/weddings/${wedding.gallerySlug}`)
+  const clean = path.replace(/\/$/, '')
+  const galleryWedding = weddings.find((wedding) => wedding.gallerySlug && clean === `/weddings/${wedding.gallerySlug}`)
   if (galleryWedding) {
     return <WeddingGallery wedding={galleryWedding} />
   }

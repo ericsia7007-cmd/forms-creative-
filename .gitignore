@@ -9,3 +9,4 @@ dist
 # NOTE: this means assets-raw/ lives only on this machine — back it up
 # separately if you want to keep the 3277x4096 collab originals.
 assets-raw
+.ssr-build
