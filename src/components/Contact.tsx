@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger, MorphSVGPlugin)
 const links = [
   { label: 'WhatsApp', value: '+60 11-5627 9155', href: 'https://wa.me/601156279155' },
   { label: 'Instagram', value: '@forms_creative', href: 'https://www.instagram.com/forms_creative/' },
-  { label: 'Direction', value: '@colin_wee0904', href: 'https://www.instagram.com/colin_wee0904/' },
+  { label: 'Director', value: '@colin_wee0904', href: 'https://www.instagram.com/colin_wee0904/' },
 ]
 
 // Three states: collapsed flat on the floor, swelling up as an arc, then

@@ -1,6 +1,11 @@
 # Forms Creative Studio
 
-One-page portfolio for Forms Creative Studio (@forms_creative), Sibu.
+Portfolio for Forms Creative Studio (@forms_creative), Sibu. The home page
+shows each wedding as a preview card — reel or lead frame on one side, a few
+frames on the other — and every set has its own page at `/weddings/<slug>`:
+`dominic-cassandra` (12), `benny-sherry` (9), `lehwei-celina` (12),
+`lihong-yiixiu` (9). `vercel.json` rewrites that path pattern, so adding a set
+needs no config change.
 React + Vite + TypeScript + Tailwind v4. Layout, type scale, radii and spacing
 are matched to park.photos (the reference site).
 
@@ -36,8 +41,8 @@ Everything in `public/` was pulled from the public Instagram embed endpoint for
 | `st2 · st3 · st9` | Street collages | @forms_creative |
 | `wed1.jpg` | Poster behind the hero reel | @forms_creative |
 
-`public/hero.mp4` — the wedding reel for **Dominic & Cassandra**, 1276×718,
-101s, 11 MB. Plays in the hero and again in that couple's block.
+`public/hero.mp4` — a 15-second cut of the **Dominic & Cassandra** wedding
+reel, 1276×718, about 1.7 MB. Plays in the hero and again in that couple's block.
 
 ### ⚠️ Credit line — do not remove
 
@@ -45,11 +50,15 @@ Everything in `public/` was pulled from the public Instagram embed endpoint for
 [@momentsby_paul](https://www.instagram.com/momentsby_paul/)**, whose account is
 the owner of both posts. Several frames carry a visible `moments` watermark.
 
-The credit is **per set**, not section-wide — it renders under a set's header
-only when that set's data carries a `credit` field. Lehwei & Celina deliberately
-has none: that post is Colin's own. Keep the credits on the two collab sets for
-as long as those photos are on the page, and confirm with Colin that Paul is
-fine with the site using them.
+The credit is **per set**, not section-wide — it renders only when that set's
+data carries a `credit` field. Lehwei & Celina and Lihong & YiiXiu deliberately
+have none: those posts are Colin's own.
+
+It travels with the frames it covers, so it renders on the gallery page rather
+than on the home card, which shows only a handful as a teaser. A set laid out
+in full on the home page carries it there instead. Note this means Paul's
+photos appear on the home page with the credit one click away — Colin's call,
+and worth confirming that Paul is fine with the site using them at all.
 
 The Dominic & Cassandra set is the same wedding as the reel Colin posted from
 his own account, so he clearly shot it — but the still photography is credited
@@ -94,8 +103,6 @@ whole rather than cropped.
   subtitles are baked into the video, so they sit under the headline. The scrim
   is at `bg-black/45` and the copy is lifted `pb-[10vh]` to keep them apart. A
   clean no-caption cut from Colin would fix this properly.
-- **101s / 11 MB is heavy for a hero loop.** Ask for a 10–15s cut, or run it
-  through ffmpeg once that is available.
 - **Set years come from different sources.** Lihong & YiiXiu is the date
   stamped on the frames (11/11/2024). Dominic & Cassandra and Benny & Sherry
   are inferred from post dates — correct them if Colin knows the real ones.
@@ -141,6 +148,8 @@ Change them in the `@theme` block in `src/index.css`.
 |---|---|
 | Hero + reel | `src/components/Hero.tsx` |
 | Weddings (`#work`) | `src/components/Weddings.tsx` |
+| Wedding gallery pages | `src/components/WeddingGallery.tsx` |
+| Collaboration credit | `src/components/WeddingCredits.tsx` |
 | Street portraits (`#street`) | `src/components/Street.tsx` |
 | Studio / about | `src/components/Studio.tsx` |
 | Contact + oversized wordmark | `src/components/Contact.tsx` |

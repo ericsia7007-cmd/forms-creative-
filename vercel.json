@@ -1,0 +1,3 @@
+{
+  "rewrites": [{ "source": "/weddings/:slug", "destination": "/index.html" }]
+}

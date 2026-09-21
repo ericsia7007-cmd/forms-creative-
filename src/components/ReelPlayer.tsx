@@ -3,6 +3,8 @@ import type { Wedding } from '../data/photos'
 
 type Props = {
   set: Wedding
+  flush?: boolean
+  portrait?: boolean
   /** Which set currently has sound — at most one on the page. */
   soundOn: string | null
   onSound: (couple: string | null) => void
@@ -28,7 +30,7 @@ function SpeakerIcon({ on }: { on: boolean }) {
   )
 }
 
-export default function ReelPlayer({ set, soundOn, onSound }: Props) {
+export default function ReelPlayer({ set, flush = false, portrait = false, soundOn, onSound }: Props) {
   const video = useRef<HTMLVideoElement>(null)
   const frame = useRef<HTMLDivElement>(null)
   const on = soundOn === set.couple
@@ -53,16 +55,19 @@ export default function ReelPlayer({ set, soundOn, onSound }: Props) {
   return (
     <div
       ref={frame}
-      className="reveal relative mt-5 aspect-[16/9] w-full overflow-hidden rounded-3xl"
+      className={`relative w-full overflow-hidden rounded-3xl ${portrait ? 'aspect-[4/5]' : 'aspect-[16/9]'} ${flush ? '' : 'mt-5'}`}
     >
-      {/* Portrait reels are cropped to 16:9 by the frame. When the picture is
-          baked sideways, the video takes the frame's swapped axes and turns
-          back. Looping is manual so it returns to reelStart, not the intro. */}
+      {/* The frame crops the video to its chosen aspect ratio. When the picture
+          is baked sideways, the video swaps the frame axes before rotation:
+          each side is the percentage of the frame's *other* side, so the turned
+          picture covers it exactly. max-w-none is load-bearing — preflight caps
+          video at max-width:100%, which silently clamps any side over 100% and
+          leaves the frame short. Looping returns to reelStart, not the intro. */}
       <video
         ref={video}
         className={
           set.reelRotate
-            ? 'absolute left-1/2 top-1/2 h-[177.78%] w-[56.25%] object-cover'
+            ? `absolute left-1/2 top-1/2 max-w-none object-cover ${portrait ? 'h-[80%] w-[125%]' : 'h-[177.78%] w-[56.25%]'}`
             : 'h-full w-full object-cover'
         }
         style={
@@ -108,7 +113,7 @@ export default function ReelPlayer({ set, soundOn, onSound }: Props) {
         onClick={() => onSound(on ? null : set.couple)}
         aria-label={on ? `Mute ${set.couple}` : `Unmute ${set.couple}`}
         aria-pressed={on}
-        className="absolute bottom-4 right-4 grid size-11 place-items-center rounded-full bg-black/35 text-white backdrop-blur-sm transition-colors hover:bg-black/55 sm:size-9"
+        className={`absolute right-4 grid size-11 place-items-center rounded-full bg-black/35 text-white backdrop-blur-sm transition-colors hover:bg-black/55 sm:size-9 ${portrait ? 'top-4' : 'bottom-4'}`}
       >
         <SpeakerIcon on={on} />
       </button>
