@@ -1,7 +1,13 @@
 import { weddings, type Wedding } from './data/photos'
 
-/** Absolute, because crawlers and WhatsApp both resolve these from elsewhere. */
-export const SITE = 'https://forms-creative.vercel.app'
+/**
+ * Absolute, because crawlers and WhatsApp both resolve these from elsewhere.
+ * Every canonical, hreflang, share card, sitemap entry and JSON-LD id is built
+ * from this one string — change it here and nowhere else. The project is also
+ * still served at forms-creative.vercel.app; those pages now point here, which
+ * is what tells Google which address is the real one.
+ */
+export const SITE = 'https://www.formscreativestudio.com'
 
 const NAME = 'Forms Creative Studio'
 const PHONE = '+60 11-5627 9155'

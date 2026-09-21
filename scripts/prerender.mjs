@@ -75,6 +75,15 @@ for (const page of pages) {
   writeFileSync(file, html)
 }
 
+writeFileSync(
+  join(dist, 'robots.txt'),
+  `User-agent: *
+Allow: /
+
+Sitemap: ${SITE}/sitemap.xml
+`,
+)
+
 const today = new Date().toISOString().slice(0, 10)
 writeFileSync(
   join(dist, 'sitemap.xml'),
